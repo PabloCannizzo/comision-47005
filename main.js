@@ -3,6 +3,8 @@ const mult = (a, b) => a * b;
 const resta = (a, b) => a - b;
 const iva = (x) => x * 0.21;
 
+
+
 class Producto {
     constructor(nombre, categoria, precio, cantidad, descuento) {
         this.nombre = nombre,
@@ -49,34 +51,37 @@ const persona1 = new Persona(nombre, edad, direccion);
 
 
 
-if ((persona1.nombre != "") && (persona1.edad >= 18)) {  /* `${nombre}` */
-    alert(`Bienvenido ${persona1.nombre} a nuestra tienda online de bebidas. A continuacion le pediremos que ingrese la categoria de bebidas que desea comprar`);
-    let nombre = prompt("Ingrese la categoria de bebida que desea");
-    /* let filtrados = producto.filter((item) => item.categoria > categoria); */
-    while (nombre != "ESC") {
-        let producto;
-        for (const item of productos) {
-            if ((item.nombre === nombre)) {
-                producto = item;
-            }
-        }
-        if (producto) {
-            let mensaje = `
+if ((persona1.nombre != "") && (persona1.edad >= 18)) {
+    alert(`Bienvenido ${persona1.nombre} a nuestra tienda online de bebidas.`);
+    alert("A continuación ingrese la categoria de bebida que desea comprar");
+    while (nombre.toLowerCase() !== "esc") {
+        if (persona1.edad >= 18) {
+            let opciones = "Opciones de bebidas con y sin alcohol:\n";
+            productos.forEach((producto, index) => {
+                opciones += `${index + 1}. ${producto.nombre}\n`;
+            });
+            opciones += "Elija una opción escribiendo el número correspondiente:";
+
+            const opcion = parseInt(prompt(opciones));
+
+            if (opcion >= 1 && opcion <= productos.length) {
+                const producto = productos[opcion - 1];
+                let mensaje = `
                 Usted eligio: ${producto.nombre}
                 Categoria: ${producto.categoria}
                 Precio c/u: $ ${producto.precio}
                 Stock disponible: ${producto.cantidad} unidades`;
-            alert(mensaje);
-            let cantidad = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-            let cantidadStock1 = resta(producto.cantidad, cantidad);
-            let precioF = resta(suma(mult(cantidad, producto.precio), iva(producto.precio)), producto.descuento);
-            /* producto.vender(); */
-            alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioF}. Cantidad actual del stock: ${cantidadStock1} unidades.`);
+                alert(mensaje);
+                let cantidad = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
+                let cantidadStock1 = resta(producto.cantidad, cantidad);
+                let precioF = resta(suma(mult(cantidad, producto.precio), iva(producto.precio)), producto.descuento);
+                alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioF}. Cantidad actual del stock: ${cantidadStock1} unidades.`);
+            }
+            else {
+                alert("La categoria que eligio no se encuentra por el momento. Elija otra variedad de bebida, gracias!");
+            }
         }
-        else {
-            alert("La categoria que eligio no se encuentra por el momento. Elija otra variedad de bebida, gracias!");
-        }
-        nombre = prompt("Debe ingresar una categoría de bebida, caso contrario escriba 'ESC' para continuar");
+        nombre = prompt("Si desea consultar un nuevo producto ingreselo a continuación. Caso contrario escriba 'esc' para salir");
     }
     let envio = prompt("Desea elegir nuestro sistema de envio a domicilio?. A continuación seleccione SI o NO");
     if ((envio === "si") || (envio === "SI")) {
@@ -102,9 +107,9 @@ if ((persona1.nombre != "") && (persona1.edad >= 18)) {  /* `${nombre}` */
                     Nombre: ${persona2.nombre}
                     Edad: ${persona2.edad}
                     Direccion: ${persona2.direccion}`);
-                    nombre = prompt("Debe volver a ingresar sus datos, caso contrario escriba 'ESC' para continuar")
+                    nombre = prompt("Si sus datos son correctos escriba 'ESC' para continuar. Caso contrario debe volver a ingresar sus datos ")
                 }//ver como agregar informacion para el envio
-                alert("Excelente, su pedido sera preparado y enviado por nuestro cadete");//ver como agregar informacion para el envio
+                alert("Excelente, su pedido sera preparado y enviado por nuestro cadete");
                 break;
         }
     }
@@ -115,31 +120,40 @@ if ((persona1.nombre != "") && (persona1.edad >= 18)) {  /* `${nombre}` */
 }
 else if ((persona1.nombre != "") && (18 > persona1.edad)) {
     alert(`Bienvenido ${persona1.nombre} a nuestra tienda online de bebidas. La venta de alcohol a menores de 18 años esta PROHIBIDA. Disculpe las molestias!`);
-    let nombre = prompt("Contamos con una amplia variedad de bebidas sin alcohol dentro nuestro stock: Gaseosas, Jugos, aguas, entre otras. Seleccione alguna de las opcione a continuación:..."); /* Para menores de 18 años contamos con 2 */
-    while (nombre != "ESC") {
-        let producto;
-        for (const item of productos) {
-            if ((item.nombre === nombre)) {
-                producto = item;
+    alert("Contamos con una amplia variedad de bebidas sin alcohol dentro nuestro stock: Gaseosas, Jugos, aguas, entre otras. Seleccione alguna de las opcione a continuación:..."); /* Para menores de 18 años contamos con 2 */
+
+    const productosSinAlcohol = productos.filter(producto => producto.categoria === "sin alcohol");
+    while (nombre.toLowerCase() !== "esc") {
+        if (persona1.edad < 18) {
+            let opcionesSinAlcohol = "Opciones de bebidas sin alcohol:\n";
+            productosSinAlcohol.forEach((producto, index) => {
+                opcionesSinAlcohol += `${index + 1}. ${producto.nombre}\n`;
+            });
+            opcionesSinAlcohol += "Elija una opción escribiendo el número correspondiente:";
+
+            const opcion = parseInt(prompt(opcionesSinAlcohol));
+
+            if (opcion >= 1 && opcion <= productosSinAlcohol.length) {
+                const producto = productosSinAlcohol[opcion - 1];
+                alert(`
+                Usted eligio: ${producto.nombre}
+                categoria: ${producto.categoria}
+                Precio c/u: $ ${producto.precio}
+                Stock Disponible: ${producto.cantidad} unidades `);
+                let cantidad = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
+                let cantidadStock1 = resta(producto.cantidad, cantidad);
+                let precioF = resta(suma(mult(cantidad, producto.precio), iva(producto.precio)), producto.descuento);
+
+                alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioF}. Cantidad actual del stock: ${cantidadStock1} unidades.`);
+                // Resto del código para mostrar información y procesar la compra
+
+            }
+            else {
+                alert("Opción inválida. Elija una opción válida dentro de la sección");
             }
         }
-        if (producto) {
-            let mensaje = `
-        Usted eligio: ${producto.nombre}
-        categoria: ${producto.categoria}
-        Precio c/u: $ ${producto.precio}
-        Stock Disponible: ${producto.cantidad} unidades `;
-            alert(mensaje);
-            let cantidad = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-            let cantidadStock1 = resta(producto.cantidad, cantidad);
-            let precioF = resta(suma(mult(cantidad, producto.precio), iva(producto.precio)), producto.descuento);
-            /* producto.vender(); */
-            alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioF}. Cantidad actual del stock: ${cantidadStock1} unidades.`);
-        }
-        else {
-            alert("La categoria que eligio no se encuentra por el momento. Elija otra variedad de bebida, gracias!");
-        }
-        nombre = prompt("Debe ingresar una categoría de bebida, caso contrario escriba 'ESC' para continuar");
+        // ...
+        nombre = prompt("Si desea ingresar un nuevo producto ingreselo a continuación. Caso contrario escriba 'esc' para salir"); //Debe ingresar una categoría de bebida, caso contrario escriba 'ESC' para continuar
     }
     let envio = prompt("Desea elegir nuestro sistema de envio a domicilio?. A continuación seleccione SI o NO");
     if ((envio === "si") || (envio === "SI")) {
