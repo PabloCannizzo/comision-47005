@@ -16,15 +16,6 @@ class Producto {
     }
 }
 
-/* const producto = []
-producto.push(new Producto("licor", "alcohol", 3500, 25));
-producto.push(new Producto("whiskie", "alcohol", 60000, 30));
-producto.push(new Producto("vino", "alcohol", 13000, 42));
-producto.push(new Producto("cocteles", "alcohol", 7440, 20));
-producto.push(new Producto("cerveza", "alcohol", 1200, 50));
-producto.push(new Producto("fernet", "alcohol", 2000, 45));
-producto.push(new Producto("jugos o aguas", "sin alcohol", 3500, 25));
-producto.push(new Producto("gaseosas", "sin alcohol", 600, 50)); */
 
 const productos = [
     { nombre: "licores", categoria: "alcohol", precio: 3500, cantidad: 25, descuento: 400 },
@@ -49,11 +40,14 @@ class Persona {
     }
 }
 
+
 let nombre = prompt("Ingrese su nombre");
 let edad = parseInt(prompt("Ingrese su edad"));
 let direccion = prompt("Ingrese su direccion de residencia");
 
 const persona1 = new Persona(nombre, edad, direccion);
+
+
 
 if ((persona1.nombre != "") && (persona1.edad >= 18)) {  /* `${nombre}` */
     alert(`Bienvenido ${persona1.nombre} a nuestra tienda online de bebidas. A continuacion le pediremos que ingrese la categoria de bebidas que desea comprar`);
@@ -72,79 +66,17 @@ if ((persona1.nombre != "") && (persona1.edad >= 18)) {  /* `${nombre}` */
                 Categoria: ${producto.categoria}
                 Precio c/u: $ ${producto.precio}
                 Stock disponible: ${producto.cantidad} unidades`;
-            switch (producto.nombre) {
-                case "licores":
-                    alert(mensaje);
-                    let cantidad = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock1 = resta(producto.cantidad, cantidad);
-                    let precioL = resta(suma(mult(cantidad, producto.precio), iva(producto.precio)), producto.descuento);
-                    /* producto.vender(); */
-                    alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioL}. Cantidad actual del stock: ${cantidadStock1} unidades.`);
-                    /* alert(mensaje); */
-                    break;
-
-                case "cerveza":
-                    alert(mensaje);
-                    let cantidad2 = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock2 = resta(producto.cantidad, cantidad2);
-                    let precioCe = resta(suma(mult(cantidad2, producto.precio), iva(producto.precio)), producto.descuento);
-                    alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioCe}. Cantidad actual del stock: ${cantidadStock2} unidades.`);
-                    break;
-
-                case "gaseosas":
-                    alert(mensaje);
-                    let cantidad3 = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock3 = resta(producto.cantidad, cantidad3);
-                    let precioG = resta(suma(mult(cantidad3, producto.precio), iva(producto.precio)), producto.descuento);
-                    alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioG}. Cantidad actual del stock: ${cantidadStock3} unidades.`);
-                    break;
-
-                case "vinos":
-                    alert(mensaje);
-                    let cantidad4 = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock4 = resta(producto.cantidad, cantidad4);
-                    let precioV = resta(suma(mult(cantidad4, producto.precio), iva(producto.precio)), producto.descuento);
-                    alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioV}. Cantidad actual del stock: ${cantidadStock4} unidades.`);
-                    break;
-
-                case "cocteles":
-                    alert(mensaje);
-                    let cantidad5 = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock5 = resta(producto.cantidad, cantidad5);
-                    let precioC = resta(suma(mult(cantidad5, producto.precio), iva(producto.precio)), producto.descuento);
-                    alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioC}. Cantidad actual del stock: ${cantidadStock5} unidades.`);
-                    break;
-
-                case "whiskies":
-                    alert(mensaje);
-                    let cantidad6 = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock6 = resta(producto.cantidad, cantidad6);
-                    let precioW = resta(suma(mult(cantidad6, producto.precio), iva(producto.precio)), producto.descuento);
-                    alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioW}. Cantidad actual del stock: ${cantidadStock6} unidades.`);
-                    break;
-
-                case "fernet":
-                    alert(mensaje);
-                    let cantidad7 = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock7 = resta(producto.cantidad, cantidad7);
-                    let precioFernet = resta(suma(mult(cantidad7, producto.precio), iva(producto.precio)), descuentoPrecioF);
-                    alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioFernet}. Cantidad actual del stock: ${cantidadStock7} unidades.`);
-                    break;
-
-                case "energizantes":
-                    alert(mensaje);
-                    let cantidad8 = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock8 = resta(producto.cantidad, cantidad8);
-                    let precioEnergizante = resta(suma(mult(cantidad8, producto.precio), iva(producto.precio)), producto.descuento);
-                    alert(`El valor de cada lata es de ${producto.precio}. Su valor final de compra + impuestos es igual = $${precioEnergizante}. Cantidad actual del stock: ${cantidadStock8} unidades.`);
-
-                default:
-                    alert("La categoria que eligio no se encuentra por el momento. Elija otra variedad de bebida, gracias!");
-                    break;
-            }
-            nombre = prompt("Debe ingresar una categoría de bebida, caso contrario escriba ''ESC para continuar");
-            /* Ingrese otra categoria que desee o caso contrario escriba 'ESC' para continuar */
+            alert(mensaje);
+            let cantidad = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
+            let cantidadStock1 = resta(producto.cantidad, cantidad);
+            let precioF = resta(suma(mult(cantidad, producto.precio), iva(producto.precio)), producto.descuento);
+            /* producto.vender(); */
+            alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioF}. Cantidad actual del stock: ${cantidadStock1} unidades.`);
         }
+        else {
+            alert("La categoria que eligio no se encuentra por el momento. Elija otra variedad de bebida, gracias!");
+        }
+        nombre = prompt("Debe ingresar una categoría de bebida, caso contrario escriba 'ESC' para continuar");
     }
     let envio = prompt("Desea elegir nuestro sistema de envio a domicilio?. A continuación seleccione SI o NO");
     if ((envio === "si") || (envio === "SI")) {
@@ -161,7 +93,18 @@ if ((persona1.nombre != "") && (persona1.edad >= 18)) {  /* `${nombre}` */
                 alert("Excelente, su pedido sera preparado y enviado por nuestro cadete");
                 break;
             default:
-                alert("OK");//ver como agregar informacion para el envio
+                let nombre = prompt("Ingrese nuevamente su nombre");
+                let edad = parseInt(prompt("Ingrese nuevamente su edad"));
+                let direccion = prompt("Ingrese nuevamente su direccion de residencia");
+                const persona2 = new Persona(nombre, edad, direccion);
+                while (nombre != "ESC") {
+                    alert(`Confirme sus datos:
+                    Nombre: ${persona2.nombre}
+                    Edad: ${persona2.edad}
+                    Direccion: ${persona2.direccion}`);
+                    nombre = prompt("Debe volver a ingresar sus datos, caso contrario escriba 'ESC' para continuar")
+                }//ver como agregar informacion para el envio
+                alert("Excelente, su pedido sera preparado y enviado por nuestro cadete");//ver como agregar informacion para el envio
                 break;
         }
     }
@@ -172,11 +115,11 @@ if ((persona1.nombre != "") && (persona1.edad >= 18)) {  /* `${nombre}` */
 }
 else if ((persona1.nombre != "") && (18 > persona1.edad)) {
     alert(`Bienvenido ${persona1.nombre} a nuestra tienda online de bebidas. La venta de alcohol a menores de 18 años esta PROHIBIDA. Disculpe las molestias!`);
-    let nombre2 = prompt("Contamos con una amplia variedad de bebidas sin alcohol dentro nuestro stock: Gaseosas, Jugos, aguas, entre otras. Seleccione alguna de las opcione a continuación:..."); /* Para menores de 18 años contamos con 2 */
-    while (nombre2 != "ESC") {
+    let nombre = prompt("Contamos con una amplia variedad de bebidas sin alcohol dentro nuestro stock: Gaseosas, Jugos, aguas, entre otras. Seleccione alguna de las opcione a continuación:..."); /* Para menores de 18 años contamos con 2 */
+    while (nombre != "ESC") {
         let producto;
         for (const item of productos) {
-            if ((item.nombre === nombre2)) {
+            if ((item.nombre === nombre)) {
                 producto = item;
             }
         }
@@ -186,45 +129,25 @@ else if ((persona1.nombre != "") && (18 > persona1.edad)) {
         categoria: ${producto.categoria}
         Precio c/u: $ ${producto.precio}
         Stock Disponible: ${producto.cantidad} unidades `;
-            switch (producto.nombre) {
-                case "gaseosas":
-                    alert(mensaje);
-                    let cantidad9 = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock9 = resta(producto.cantidad, cantidad9);
-                    let precioGa = resta(suma(mult(cantidad9, producto.precio), iva(producto.precio)), producto.descuento);
-                    alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioGa}. Cantidad actual del stock: ${cantidadStock9} unidades.`);
-                    break;
-
-                case "jugos":
-                    alert(mensaje);
-                    let cantidad10 = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock10 = resta(producto.cantidad, cantidad10);
-                    let precioJ = resta(suma(mult(cantidad10, producto.precio), iva(producto.precio)), producto.descuento);
-                    alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioJ}. Cantidad actual del stock: ${cantidadStock10} unidades.`);
-                    break;
-
-                    case "aguas":
-                    alert(mensaje);
-                    let cantidad11 = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
-                    let cantidadStock11 = resta(producto.cantidad, cantidad11);
-                    let precioA = resta(suma(mult(cantidad11, producto.precio), iva(producto.precio)), producto.descuento);
-                    alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioA}. Cantidad actual del stock: ${cantidadStock11} unidades.`);
-                    break;
-
-                default:
-                    alert("La categoria que eligio no se encuentra por el momento en esta sección. Elija otra variedad de bebida, gracias!");
-                    break;
-            }
-            nombre2 = prompt("Debe ingresar una categoría de bebida, caso contrario escriba 'ESC' para continuar");
+            alert(mensaje);
+            let cantidad = parseInt(prompt("Ingrese la cantidad a comprar: #..."));
+            let cantidadStock1 = resta(producto.cantidad, cantidad);
+            let precioF = resta(suma(mult(cantidad, producto.precio), iva(producto.precio)), producto.descuento);
+            /* producto.vender(); */
+            alert(`El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioF}. Cantidad actual del stock: ${cantidadStock1} unidades.`);
         }
+        else {
+            alert("La categoria que eligio no se encuentra por el momento. Elija otra variedad de bebida, gracias!");
+        }
+        nombre = prompt("Debe ingresar una categoría de bebida, caso contrario escriba 'ESC' para continuar");
     }
     let envio = prompt("Desea elegir nuestro sistema de envio a domicilio?. A continuación seleccione SI o NO");
     if ((envio === "si") || (envio === "SI")) {
         alert(`Confirme sus datos ingresados: 
-            Nombre: ${persona1.nombre}
-            Edad: ${persona1.edad}
-            Dirección: ${persona1.direccion}`);
-        let confirmacion = prompt("Si son correctos escriba SI, caso contrario escriba MODIFICAR");
+        Nombre: ${persona1.nombre}
+        Edad: ${persona1.edad}
+        Dirección: ${persona1.direccion}`);
+        let confirmacion = prompt("Si son correctos escriba SI, caso contrario escriba MODIFICAR/NO");
         switch (confirmacion) {
             case "si":
                 alert("Excelente, su pedido sera preparado y enviado por nuestro cadete");
@@ -233,9 +156,19 @@ else if ((persona1.nombre != "") && (18 > persona1.edad)) {
                 alert("Excelente, su pedido sera preparado y enviado por nuestro cadete");
                 break;
             default:
-                alert("OK");//ver como agregar informacion para el envio
+                let nombre = prompt("Ingrese nuevamente su nombre");
+                let edad = parseInt(prompt("Ingrese nuevamente su edad"));
+                let direccion = prompt("Ingrese nuevamente su direccion de residencia");
+                const persona3 = new Persona(nombre, edad, direccion);
+                while (nombre != "ESC") {
+                    alert(`Confirme sus datos:
+                    Nombre: ${persona3.nombre}
+                    Edad: ${persona3.edad}
+                    Direccion: ${persona3.direccion}`);
+                    nombre = prompt("Debe volver a ingresar sus datos, caso contrario escriba 'ESC' para continuar")
+                }//ver como agregar informacion para el envio
+                alert("Excelente, su pedido sera preparado y enviado por nuestro cadete");
                 break;
-            //ver como agregar informacion para el envio
         }
     }
     else {
