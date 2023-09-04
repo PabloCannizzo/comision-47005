@@ -20,30 +20,27 @@ class Producto {
 
 
 const productos = [
-    { id: 1, nombre: "licores", categoria: "alcohol", precio: 3500, cantidad: 25, descuento: 400 },
-    { id: 2, nombre: "whiskies", categoria: "alcohol", precio: 60000, cantidad: 30, descuento: 2000 },
-    { id: 3, nombre: "vinos", categoria: "alcohol", precio: 13000, cantidad: 42, descuento: 1000 },
-    { id: 4, nombre: "cocteles", categoria: "alcohol", precio: 7440, cantidad: 20, descuento: 1100 },
-    { id: 5, nombre: "cerveza", categoria: "alcohol", precio: 1200, cantidad: 50, descuento: 350 },
-    { id: 6, nombre: "fernet", categoria: "alcohol", precio: 2000, cantidad: 45, descuento: 300 },
-    { id: 7, nombre: "jugos", categoria: "sin alcohol", precio: 400, cantidad: 40, descuento: 150 },
-    { id: 8, nombre: "gaseosas", categoria: "sin alcohol", precio: 600, cantidad: 50, descuento: 200 },
-    { id: 9, nombre: "energizantes", categoria: "sin alcohol", precio: 600, cantidad: 50, descuento: 300 },
-    { id: 10, nombre: "aguas", categoria: "sin alcohol", precio: 400, cantidad: 50, descuento: 100 }
+    { nombre: "licores", categoria: "alcohol", precio: 3500, cantidad: 25, descuento: 400 },
+    { nombre: "whiskies", categoria: "alcohol", precio: 60000, cantidad: 30, descuento: 2000 },
+    { nombre: "vinos", categoria: "alcohol", precio: 13000, cantidad: 42, descuento: 1000 },
+    { nombre: "cocteles", categoria: "alcohol", precio: 7440, cantidad: 20, descuento: 1100 },
+    { nombre: "cerveza", categoria: "alcohol", precio: 1200, cantidad: 50, descuento: 350 },
+    { nombre: "fernet", categoria: "alcohol", precio: 2000, cantidad: 45, descuento: 300 },
+    { nombre: "jugos", categoria: "sin alcohol", precio: 400, cantidad: 40, descuento: 150 },
+    { nombre: "gaseosas", categoria: "sin alcohol", precio: 600, cantidad: 50, descuento: 200 },
+    { nombre: "energizantes", categoria: "sin alcohol", precio: 600, cantidad: 50, descuento: 300 },
+    { nombre: "aguas", categoria: "sin alcohol", precio: 400, cantidad: 50, descuento: 100 }
 ]
 
 let header = document.getElementById("encabezado");
-encabezado.className = "encabezado";
-let h1 = document.createElement("h1");
-let parrafo = document.createElement("p");
-h1.innerHTML = "LiquorStore";
-parrafo.innerHTML = "tienda de bebidas online";
-h1.className = "verde";
-parrafo.className = "subtitulo";
-header.append(h1, parrafo); // bien
+let titulo = document.createElement("h1");
+titulo.innerHTML = "LiquorStore";
+header.append(titulo); // bien
+
+let body = document.getElementById("")
 
 alert("Bienvenido a LiquorStore");
-//alert("A continuación le pediremos unos datos, con el fin de brindarle una mejor atención, Gracias!"); 
+alert("A continuación le pediremos unos datos, con el fin de brindarle una mejor atención, Gracias!");
 
 class Persona {
     constructor(nombre, edad, direccion) {
@@ -53,14 +50,6 @@ class Persona {
     }
 }
 
-/* let cuerpo = document.getElementById("cuerpo");
-cuerpo.className = "cuerpo"; */
-/* let div1 = document.createElement("div");
-div1.className = "presentacion";
-div1.innerHTML = `<h2>Bienvenido a LiquorStore</h2>
-<p>A continuación le pediremos unos datos, con el fin de brindarle una mejor atención, Gracias!</p>`; */
-
-// ver si queda mejor crear un formulario para ingresar el nomnbre y la edad o mostrarlo con un promp
 
 let nombre = prompt("Ingrese su nombre");
 let edad = parseInt(prompt("Ingrese su edad"));
@@ -69,12 +58,7 @@ let direccion = prompt("Ingrese su direccion de residencia");
 const persona1 = new Persona(nombre, edad, direccion);
 
 
-/* let div1 = document.createElement("div");
-div1.className = "categorias";
-div1.innerHTML = `<h2>Bienvenido ${persona1.nombre} a nuestra tienda de bebidas online</h2>
-<h3>A continuación ingrese la categoria de bebida que desea comprar...</h3>`;
-cuerpo.append(div1); */
-/* 
+
 if ((persona1.nombre != "") && (persona1.edad >= 18)) {
     alert(`Bienvenido ${persona1.nombre} a nuestra tienda online de bebidas.`);
     alert("A continuación ingrese la categoria de bebida que desea comprar");
@@ -144,7 +128,7 @@ if ((persona1.nombre != "") && (persona1.edad >= 18)) {
 }
 else if ((persona1.nombre != "") && (18 > persona1.edad)) {
     alert(`Bienvenido ${persona1.nombre} a nuestra tienda online de bebidas. La venta de alcohol a menores de 18 años esta PROHIBIDA. Disculpe las molestias!`);
-    alert("Contamos con una amplia variedad de bebidas sin alcohol dentro nuestro stock: Gaseosas, Jugos, aguas, entre otras. Seleccione alguna de las opcione a continuación:..."); // Para menores de 18 años contamos con 2 
+    alert("Contamos con una amplia variedad de bebidas sin alcohol dentro nuestro stock: Gaseosas, Jugos, aguas, entre otras. Seleccione alguna de las opcione a continuación:..."); /* Para menores de 18 años contamos con 2 */
 
     const productosSinAlcohol = productos.filter(producto => producto.categoria === "sin alcohol");
     while (nombre.toLowerCase() !== "esc") {
@@ -216,97 +200,4 @@ else if ((persona1.nombre != "") && (18 > persona1.edad)) {
 }
 else {
     alert("Debe completar con los datos requeridos");
-} */
-//-------------------------------------------------------------------------------------
-let footer = document.getElementById("pie-de-pagina");
-let derechos = document.createElement("div");
-derechos.className = "derechos-autor"
-derechos.innerHTML = `<p>&copy; 2023 Company, Inc. todos los derechos reservados.</p>`;
-footer.append(derechos);
-
-const agregar = (nombre) => {
-    alert(`El producto ${nombre} fue agregado al carrito`);
-    let producto = productos.find((item) => item.id === nombre);
-    console.log(producto);
-};
-
-let cuerpo = document.getElementById("cuerpo");
-cuerpo.className = "cuerpo";
-
-if ((persona1.nombre != "") && (persona1.edad >= 18)) {
-
-    let div1 = document.createElement("div");
-    div1.className = "bienvenida";
-    div1.innerHTML = `<h2>Bienvenido ${persona1.nombre} a nuestra tienda de bebidas online</h2>
-    <br>
-    <h3>A continuación ingrese la categoria de bebida que desea comprar...</h3>`;
-    productos.forEach((producto) => {
-        let div2 = document.createElement("div");
-        div2.className = "div";
-        div2.innerHTML =
-            `<h4>Producto: ${producto.nombre}</h4>
-            <h4>Categoria: ${producto.categoria}</h4>
-            <b>Precio c/u: $ ${producto.precio}</b>
-            <h4>Stock disponible: ${producto.cantidad} unidades</h4>
-            <br>
-            <form action="" class="cantidad">
-                <label for="number"></label>
-                <input type="number" name="cantidad" id="" placeholder="Ingrese la cantidad">
-            </form>
-            <br>
-            <button id = "boton${producto.id}">AGREGAR</button>
-            <br>
-            <hr />
-            `;
-        cuerpo.append(div1, div2);
-
-
-        let boton = document.getElementById(`boton${producto.id}`);
-        boton.addEventListener("click", () => agregar(producto.nombre));
-    });
-
-}
-else if ((persona1.nombre != "") && (18 > persona1.edad)) {
-    let div3 = document.createElement("div");
-    div3.className = "categorias";
-    div3.innerHTML = `
-        <h2>Bienvenido ${persona1.nombre} a nuestra tienda de bebidas online</h2>
-        <br>
-        <h3>Le informamos que la venta de alcohol a menores de 18 años esta PROHIBIDA. Disculpe las molestias!</h3>
-        <br>
-        <h3>Contamos con una amplia variedad de bebidas "SIN ALCOHOL" dentro nuestro stock: Gaseosas, Jugos, aguas, entre otras. Seleccione alguna de las opcione a continuación:...</h3>
-        <br>`;
-
-    let productosSinAlcohol = productos.filter(producto => producto.categoria === "sin alcohol");
-    productosSinAlcohol.forEach((producto) => {
-        let div4 = document.createElement("div");
-        div4.className = "div";
-        div4.innerHTML = `
-        <h4> Producto: ${producto.nombre}</h4 >
-        <h4>Categoria: ${producto.categoria}</h4>
-        <b>Precio c/u: $ ${producto.precio}</b>
-        <h4>Stock disponible: ${producto.cantidad} unidades</h4>
-        <br>
-        <input type = "number" name="cantidad" id="" placeholder="Ingrese la cantidad"></input>
-        <button id = "boton${producto.id}">AGREGAR</button>
-        <br>
-        <hr />`;
-        cuerpo.append(div3, div4);
-
-        let boton = document.getElementById(`boton${producto.id}`);
-        boton.addEventListener("click", () => agregar(producto.nombre));
-    });
-}
-else {
-    let div5 = document.createElement("div");
-    div5.className = "div5";
-    div5.innerHTML = `<h3 class="datosFaltantes"> Debe completar con los datos requeridos</h3 > 
-    <div class="boton-recargar">
-        <button class="continuar">
-            <a href="./index.html">
-                <h5>Recargar pagina</h5>
-            </a>
-        </button>
-    </div>`;
-    cuerpo.append(div5);
 }
