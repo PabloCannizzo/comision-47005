@@ -53,21 +53,16 @@ class Persona {
     }
 }
 
-/* let cuerpo = document.getElementById("cuerpo");
-cuerpo.className = "cuerpo"; */
-/* let div1 = document.createElement("div");
-div1.className = "presentacion";
-div1.innerHTML = `<h2>Bienvenido a LiquorStore</h2>
-<p>A continuación le pediremos unos datos, con el fin de brindarle una mejor atención, Gracias!</p>`; */
-
-// ver si queda mejor crear un formulario para ingresar el nomnbre y la edad o mostrarlo con un promp
-
 let nombre = prompt("Ingrese su nombre");
 let edad = parseInt(prompt("Ingrese su edad"));
 let direccion = prompt("Ingrese su direccion de residencia");
 
 const persona1 = new Persona(nombre, edad, direccion);
 
+sessionStorage.setItem("persona1", JSON.stringify(persona1));
+/* sessionStorage.setItem("nombre", persona1.nombre);
+sessionStorage.setItem("edad", persona1.edad);
+sessionStorage.setItem("direccion", persona1.direccion); */
 
 /* let div1 = document.createElement("div");
 div1.className = "categorias";
@@ -218,16 +213,12 @@ else {
     alert("Debe completar con los datos requeridos");
 } */
 //-------------------------------------------------------------------------------------
-let footer = document.getElementById("pie-de-pagina");
-let derechos = document.createElement("div");
-derechos.className = "derechos-autor"
-derechos.innerHTML = `<p>&copy; 2023 Company, Inc. todos los derechos reservados.</p>`;
-footer.append(derechos);
 
 const agregar = (nombre) => {
     alert(`El producto ${nombre} fue agregado al carrito`);
-    let producto = productos.find((item) => item.id === nombre);
-    console.log(producto);
+    localStorage.setItem(`SE AGREGO AL CARRITO: ${nombre}`, true);
+    /* let producto = productos.find((item) => item.id === nombre);
+    console.log(producto); */
 };
 
 let cuerpo = document.getElementById("cuerpo");
@@ -310,3 +301,9 @@ else {
     </div>`;
     cuerpo.append(div5);
 }
+
+let footer = document.getElementById("pie-de-pagina");
+let derechos = document.createElement("div");
+derechos.className = "derechos-autor"
+derechos.innerHTML = `<p>&copy; 2023 Company, Inc. todos los derechos reservados.</p>`;
+footer.append(derechos);
