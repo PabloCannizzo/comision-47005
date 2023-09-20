@@ -39,7 +39,7 @@ let parrafo = document.createElement("p");
 h1.innerHTML = "LiquorStore";
 parrafo.innerHTML = "tienda de bebidas online";
 h1.className = "verde";
-
+parrafo.className = "subtitulo";
 header.append(h1, parrafo); 
 
 alert("Bienvenido a LiquorStore");
@@ -53,11 +53,11 @@ class Persona {
     }
 }
 
-//let nombre = prompt("Ingrese su nombre");
+let nombre = prompt("Ingrese su nombre");
 let edad = parseInt(prompt("Ingrese su edad"));
-//let direccion = prompt("Ingrese su direccion de residencia");
+let direccion = prompt("Ingrese su direccion de residencia");
 
-const persona1 = new Persona(/* nombre, */ edad/* , direccion */);
+const persona1 = new Persona(nombre, edad, direccion);
 
 sessionStorage.setItem("persona1", JSON.stringify(persona1));
 
@@ -78,24 +78,23 @@ sessionStorage.setItem("edad", persona1.edad);
 sessionStorage.setItem("direccion", persona1.direccion); */
 
 
-/* const agregar = (nombre) => {
+const agregar = (nombre) => {
     alert(`El producto ${nombre} fue agregado al carrito`);
     localStorage.setItem(`SE AGREGO AL CARRITO: ${nombre}`, true);
     /* let producto = productos.find((item) => item.id === nombre);
     console.log(producto); */
-//}; 
+};
 
 let cuerpo = document.getElementById("cuerpo");
 cuerpo.className = "cuerpo";
 
-if /* ((persona1.nombre != "") && */ (persona1.edad >= 18) {
+if ((persona1.nombre != "") && (persona1.edad >= 18)) {
 
     let div1 = document.createElement("div");
     div1.className = "bienvenida";
     div1.innerHTML = `<h2>Bienvenido ${persona1.nombre} a nuestra tienda de bebidas online</h2>
     <br>
     <h3>A continuación ingrese la categoria de bebida que desea comprar...</h3>`;
-    cuerpo.append(div1);
     productos.forEach((producto) => {
         let div2 = document.createElement("div");
         div2.className = "div";
@@ -114,62 +113,15 @@ if /* ((persona1.nombre != "") && */ (persona1.edad >= 18) {
             <br>
             <hr />
             `;
-        cuerpo.append(div2);
+        cuerpo.append(div1, div2);
 
-        let boton1 = document.getElementById(`boton${producto.id}`);
-        const agregar = (nombre) => {
-            alert(`El producto ${nombre} fue agregado al carrito`);
-            localStorage.setItem(`SE AGREGO AL CARRITO: ${nombre}`, true);
-            /* let producto = productos.find((item) => item.id === nombre);
-            console.log(producto); */
-        };
-        boton1.addEventListener("click", () => agregar(producto.nombre));
+
+        let boton = document.getElementById(`boton${producto.id}`);
+        boton.addEventListener("click", () => agregar(producto.nombre));
     });
 
-    let div3 = document.createElement("div");
-    div3.className = "envio";
-    div3.innerHTML = `<h3>Utilice nuestro sistema de envio personalizado</h3>
-    <br>
-    <h3>CONFIRME SI SUS DATOS INGRESADOS SON CORRECTOS</h3>
-    <h4>Nombre: ${persona1.nombre}</h4>
-    <h4>Edad: ${persona1.edad}</h4>
-    <h4>Dirección: ${persona1.direccion}</h4>
-    <button id = "botonEnvio">ENVIAR</button>
-    <button id = "botonModificar">MODIFICAR</button>
-    <br>
-    `;
-    cuerpo.append(div3);
-
-    let boton2 = document.getElementById(`botonEnvio`);
-    //let boton3 = document.getElementById(`botonModificar`);
-        const enviar = (productos) => {
-            let comprados = "Productos a enviar\n";
-            productos.forEach((producto, index) => {
-                comprados += `${index + 1}. ${producto.nombre}\n`;
-            });
-            //comprados += "Elija una opción escribiendo el número correspondiente:";
-            const opcion = parseInt(prompt(comprados));
-
-            if (opcion >= 1 && opcion <= productos.length) {
-                const producto = productos[opcion - 1];
-                let mensaje = `
-                Todos sus productos seran enviados:
-                Usted eligio: ${producto.nombre}`;
-                alert(mensaje);
-            }
-            localStorage.setItem(`SE ENVIARÁ: ${nombre}`, true);
-        };
-
-        /* const agregar = (nombre) => {
-            alert(`El producto ${nombre} fue agregado al carrito`);
-            localStorage.setItem(`SE AGREGO AL CARRITO: ${nombre}`, true); */
-            /* let producto = productos.find((item) => item.id === nombre);
-            console.log(producto); */
-        
-        /* boton.addEventListener("click", () => agregar(producto.nombre));
- */
 }
-else if (/* (persona1.nombre != "") && */ (18 > persona1.edad)) {
+else if ((persona1.nombre != "") && (18 > persona1.edad)) {
     let div3 = document.createElement("div");
     div3.className = "categorias";
     div3.innerHTML = `

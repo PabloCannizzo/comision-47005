@@ -20,48 +20,125 @@ h3 {
     letter-spacing: 0.1rem;
 }
 
-.verde{
-    text-align: center;
-    background-color: rgb(0, 181, 0);
-    text-shadow: 0.1rem 0.1rem 0.3rem rgb(12, 57, 240);/*  rosybrown */
-    font-size: 5rem;
-}
-
-.subtitulo {
+.verde {
     text-align: center;
     background-color: rgb(0, 181, 0);
     text-transform: capitalize;
-    font-size: 1.8rem;
-    letter-spacing: 0.33rem;
-    text-shadow: 0.1rem 0.1rem 0.3rem rgb(12, 57, 240);
+    text-shadow: 0.1rem 0.1rem 0.3rem rgb(12, 57, 240);/*  rosybrown */
+    font-size: 3.2rem;
+    text-decoration: none;
+    p{
+        font-size: 2.4rem;
+        letter-spacing: 0.33rem;
+    }
 }
 
-.cuerpo{
-    background-color: rgb(128, 128, 128);
+.finCompra{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
-.div{
+
+.formularioCompra{
+    background-color: rgba(172, 255, 47, 0.732);
+    border-radius: 1.2rem;
+    width: 60%;
+    padding: 1.1rem 0rem 1.1rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h5{
+        padding-bottom: 1.2rem;
+        font-size: 5rem;
+    }
+    .divForm1{
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 0.8rem;
+    }
+    .divForm2{
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 0.8rem;
+    }
+    .divForm3{
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+.envio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 75%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.316);
+    text-transform: capitalize;
+    border-radius: 0.7rem;
+
+    h3 {
+        font-size: 3rem;
+    }
+
+    h4 {
+        font-size: 3rem;
+    }
+}
+/* display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; */
+
+.cuerpo {
+    background-color: rgb(128, 128, 128);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.div {
+    width: 25%;
+    margin: 2rem;
+    border-radius: 1.5rem;
     font-size: 2rem;
     text-transform: capitalize;
     text-align: center;
-    padding: 1.5rem;
+    padding: 0.7rem 1rem 0.7rem 1rem;
+    background-color: rgba(0, 0, 255, 0.178);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 3;
+    grid-template-rows: 4;
 }
-.derechos-autor{
+
+.derechos-autor {
     background-color: rgb(48, 48, 48);
-    color: beige;
     text-align: center;
+    color: beige;
     font-size: 1.5rem;
 }
-.boton-recarga{
+
+.boton-recarga {
     padding: 2rem;
     display: flex;
     justify-items: center;
     align-items: center;
 }
-.datosFaltantes{
+
+.datosFaltantes {
     padding: 3rem;
     text-transform: uppercase;
 }
-.div5{
+
+.div5 {
     width: 100%;
     height: 100%;
 }
+
+
