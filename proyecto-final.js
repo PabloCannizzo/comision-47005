@@ -263,29 +263,6 @@ formulario.addEventListener("submit", (e) => {
     const filtro = productos.filter((producto) => producto.nombre.includes(buscador.value));
     mostrarProductos(filtro);
 });
-//veeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeerrrrrrrrrrrrrrrrrrrrrrrrrr
-
-
-/*const persona1 = new Persona(nombre, edad, direccion);
-
-sessionStorage.setItem("persona1", JSON.stringify(persona1)); */
-
-/* let cuerpo4 = document.getElementById("envio");
-let formularioEnvio = document.createElement("div");
-formularioEnvio.className = "formularioEnvio";
-formularioEnvio.innerHTML = `<h3>Utilice nuestro sistema de envio personalizado</h3>
-    <br>
-    <h3>Ingrese sus datos por favor</h3>
-    <form action="" id="nombre">
-        <input type="text" name="nombre" id="" placeholder="ingrese su nombre">
-    </form>
-    <button id = "botonEnvio">ENVIAR</button>
-    <br>
-    `;/* <h4>Nombre: ${persona1.nombre}</h4>
-    <h4>Edad: ${persona1.edad}</h4>
-    <h4>Dirección: ${persona1.direccion}</h4> */
-//envio.append(formularioEnvio); 
-
 
 const footer = document.getElementById("pie-de-pagina");
 const derechos = document.createElement("div");
