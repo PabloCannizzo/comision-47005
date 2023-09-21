@@ -242,8 +242,6 @@ const actualizarTotal = (contenedor) => {
 };
 
 
-
-
 mostrarProductos(productos);
 mostrarCarrito();
 
