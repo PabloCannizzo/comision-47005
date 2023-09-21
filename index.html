@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>LiquorStore</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -11,6 +11,26 @@
 
     </header>
     <main id = "cuerpo">
+        <section>
+            <form id="formulario">
+                <div class="search">
+                    <input type="text" id="buscador" placeholder="Busque su Bebida" />
+                    <button class="button filter">Buscar</button>
+                </div>
+            </form>
+        </section>
+        <section>
+            <h2>Productos</h2>
+            <ul class="product-list">
+                <!-- Agregamos productos dinámicamente con JavaScript -->
+            </ul>
+        </section>
+        <section>
+            <h2>Carrito</h2>
+            <div class="carrito">
+
+            </div>
+        </section>
         <!-- <form action="" id="formulario">
             <input type="text">
             <input type="number">
@@ -21,6 +41,7 @@
         
     </footer>
     <script src="./proyecto-final.js"></script>
+    <script src="./productos.js"></script>
     <!-- <script src="./practica.js"></script> -->
 </body>
 </html>
