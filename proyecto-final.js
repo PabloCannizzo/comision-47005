@@ -83,9 +83,11 @@ const cuerpo = document.getElementById("entrada");
 cuerpo.className = "cuerpo";
 const div1 = document.createElement("div");
 div1.className = "bienvenida";
-div1.innerHTML = `<h2>Bienvenido a nuestra tienda de bebidas online</h2>
+div1.innerHTML = `<h2>Bienvenido a LiquorStore nuestra tienda de bebidas online</h2>
 <br>
-<h3>A continuación ingrese la categoria de bebida que desea comprar...</h3>`;
+<h3>La mejor bebida para las mejores personas</h3>
+<br>
+<h4>A continuación ingrese la categoria de bebida que desea comprar...</h3>`;
 entrada.append(div1);
 
 
@@ -245,13 +247,6 @@ const actualizarTotal = (contenedor) => {
 mostrarProductos(productos);
 mostrarCarrito();
 
-
-fetch("./js/productos.json")
-    .then((response) => response.json())
-    .then((productos) => {
-        mostrarProductos(productos);
-        mostrarCarrito();
-    });
 
 const formulario = document.getElementById("formulario");
 
