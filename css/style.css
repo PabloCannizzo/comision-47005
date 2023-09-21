@@ -8,12 +8,6 @@ html {
     font-size: 62.5%;
 }
 
-h2 {
-    font-size: 3rem;
-    text-align: center;
-    padding: 2rem;
-}
-
 h3 {
     font-size: 2.2rem;
     text-align: center;
@@ -21,88 +15,109 @@ h3 {
 }
 
 .verde {
+    margin-left: 5rem;
+}
+
+.verde h1 {
     text-decoration: none;
-    text-align: center;
-    background-color: rgb(0, 181, 0);
     text-transform: capitalize;
     text-shadow: 0.1rem 0.1rem 0.3rem rgb(12, 57, 240);
     /*  rosybrown */
-    font-size: 3.2rem;
-
-    p {
-        font-size: 2.1rem;
-        letter-spacing: 0.33rem;
-    }
+    font-size: 6.1rem;
+    text-align: center;
 }
 
-/* 
-.finCompra{
+.verde p {
+    text-align: center;
+    font-size: 2.5rem;
+    letter-spacing: 0.33rem;
+    text-shadow: 0.1rem 0.1rem 0.3rem rgb(12, 57, 240);
+    text-transform: capitalize;
+}
+
+.bienvenida h2 {
+    color: rgb(255, 229, 32);
+    font-size: 3rem;
+    text-align: center;
+    padding: 2rem;
+}
+
+.bienvenida h3 {
+    padding-bottom: 2rem;
+    color: rgb(255, 229, 32);
+}
+
+.header {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-}
-
-.formularioCompra{
-    background-color: rgba(172, 255, 47, 0.732);
-    border-radius: 1.2rem;
-    width: 60%;
-    padding: 1.1rem 0rem 1.1rem 0rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    h5{
-        padding-bottom: 1.2rem;
-        font-size: 5rem;
-    }
-    .divForm1{
-        display: flex;
-        flex-direction: row;
-        padding-bottom: 0.8rem;
-    }
-    .divForm2{
-        display: flex;
-        flex-direction: row;
-        padding-bottom: 0.8rem;
-    }
-    .divForm3{
-        display: flex;
-        flex-direction: row;
-    }
-}
-
-.envio {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     text-align: center;
-    width: 75%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.316);
-    text-transform: capitalize;
-    border-radius: 0.7rem;
+    background-color: rgba(174, 253, 227, 0.637);
+}
 
-    h3 {
-        font-size: 3rem;
-    }
+.iniSesion {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: rgb(3, 135, 129);
+    padding: 0.4rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-    h4 {
-        font-size: 3rem;
-    }
-} */
-/* display: flex;
+.nombre {
+    display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center; */
+    justify-items: center;
+    align-items: center;
+    margin: auto;
+    padding-bottom: 0.7rem;
+}
+.nombre label{
+    padding-right: 1.6rem;
+    font-size: 1rem;
+}
+.contraseña {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    padding-bottom: 0.7rem;
+}
+.contraseña label {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+}
 
+.button {
+	background-color: #4caf50;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 3px;
+	cursor: pointer;
+}
 
+.button:hover {
+	background-color: #45a049;
+}
 
+.mensajes {
+	max-width: 400px;
+	margin: 30px auto;
+	background-color: #f6dada;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	color: #bc3c3c;
+	text-align: center;
+}
 
-
-
-
-/* 777777777777777777777777777 */
+.hide {
+	display: none;
+}
 
 body {
     font-family: arial, sans-serif;
@@ -110,20 +125,10 @@ body {
     /* background-color: lightsalmon; */
 }
 
-/* header {
-	background-color: #333;
-	color: #fff;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1em;
+
+.button-cart {
+    cursor: pointer;
 }
- */
-/* .logo {
-	font-size: 1.5rem;
-	text-decoration: none;
-	color: #fff;
-} */
 
 main {
     max-width: 95%;
@@ -131,11 +136,32 @@ main {
     text-align: center;
 }
 
-/* .carrito{
+.carrito {
     background-color: lightseagreen;
     border-radius: 2rem;
-    width: 85%;
-} */
+    text-align: center;
+    padding: 0.6rem 0rem 0.6rem 0rem;
+}
+
+.seccion2 {
+    width: 90%;
+    background-color: rgb(26, 100, 96);
+    margin: auto;
+    margin-top: 4rem;
+    border-radius: 2rem;
+}
+
+.seccion2 h2 {
+    font-size: 3rem;
+    text-align: center;
+    padding: 0.5rem 0rem 0.5rem 0rem;
+}
+
+p {
+    font-size: 2rem;
+    padding-top: 0.5rem;
+}
+
 .product-list {
     list-style: none;
     margin: 0;
@@ -199,11 +225,15 @@ main {
 }
 
 .derechos-autor {
+    margin-top: 4rem;
     background-color: rgb(48, 48, 48);
+    border-top: 1px solid #333;
+}
+
+.derechos-autor p {
     text-align: center;
     color: beige;
     font-size: 1.5rem;
-    border-top: 1px solid #333;
 }
 
 .overlay {
@@ -246,16 +276,23 @@ main {
 }
 
 .counter {
-	width: 120px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .counter .button {
-	width: 30px;
+    width: 30px;
 }
 
 .button {
-	padding: 0.5rem;
+    padding: 0.5rem;
+}
+
+.closeModal {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0.8rem;
 }

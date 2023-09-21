@@ -49,15 +49,44 @@ class Persona {
     }
 }
 
+const inicioFormulario = document.getElementById("inicio");
 
-let cuerpo = document.getElementById("cuerpo");
+const mostrarMensaje = (title, text, type) => {
+    Swal.fire(title, text, type);
+};
+
+inicioFormulario.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const nombre = document.getElementById("nombre").value;
+    const pass = document.getElementById("password").value;
+    fetch("./usuarios.json")
+        .then((response) => response.json())
+        .then((users) => {
+            const user = users.find((user) => user.nombre === nombre);
+            if (user) {
+                if (pass === user.password) {
+                    mostrarMensaje(`¡Buen día, ${user.nombre}!`, "Redireccionando...", "success");
+                    setTimeout(() => {
+                        location.href = "./index.html";
+                    }, 1500);
+                } else {
+                    mostrarMensaje("Error al iniciar sesión", "Contraseña incorrecta.", "error");
+                }
+            } else {
+                mostrarMensaje("Error al iniciar sesión", "Nombre incorrecto.", "error");
+            }
+        });
+});
+
+
+const cuerpo = document.getElementById("entrada");
 cuerpo.className = "cuerpo";
-let div1 = document.createElement("div");
+const div1 = document.createElement("div");
 div1.className = "bienvenida";
 div1.innerHTML = `<h2>Bienvenido a nuestra tienda de bebidas online</h2>
 <br>
 <h3>A continuación ingrese la categoria de bebida que desea comprar...</h3>`;
-cuerpo.append(div1);
+entrada.append(div1);
 
 
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -65,7 +94,6 @@ let body = document.getElementById("cuerpo");
 
 const mostrarProductos = (productos) => {
     const contenedorProductos = document.querySelector(".product-list");
-    // Limpio el contenedor por si había algo anteriormente
     contenedorProductos.innerHTML = "";
     productos.forEach((producto) => {
         const li = document.createElement("li");
@@ -81,25 +109,28 @@ const mostrarProductos = (productos) => {
         const boton = document.getElementById(`agregar-${producto.id}`);
         boton.addEventListener("click", () => {
             agregarAlCarrito(producto.id);
+            Swal.fire({
+                position: 'top-end',
+                whith: '500px',
+                margin: '20px',
+                icon: 'success',
+                title: 'Producto agregado al carrito!',
+                showConfirmButton: false,
+                timer: 1500
+            })
         });
     });
 };
 
 const agregarAlCarrito = (id) => {
-    // Si el producto no está en el carrito, lo agregamos
     if (!carrito.some((producto) => producto.id === id)) {
-        // Buscamos el producto en el array de productos
         const producto = productos.find((producto) => producto.id === id);
-        // Agregamos un nuevo objeto con el contenido del producto y un campo cantidad en 1. Para más información sobre spread operator: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
         carrito.push({ ...producto, cantidad: 1 });
     } else {
-        // Si el producto está en el carrito, lo buscamos y le incrementamos las unidades
         const producto = carrito.find((producto) => producto.id === id);
         producto.cantidad++;
     }
-    // Guardamos el carrito en el localStorage para tenerlo actualizado si recargamos la página porque hicimos cambios
     localStorage.setItem("carrito", JSON.stringify(carrito));
-    // Actualizamos la vista del carrito porque hemos hecho cambios
     mostrarCarrito();
 };
 
@@ -116,7 +147,7 @@ const mostrarCarrito = () => {
         const contenedorTotal = document.createElement("p");
         actualizarTotal(contenedorTotal);
         contenedorCarrito.appendChild(contenedorTotal);
-        // Recorro el array y por cada uno creo una card para mostrar en pantalla
+
         carrito.forEach((producto) => {
             const li = document.createElement("li");
             li.innerHTML = `
@@ -125,9 +156,9 @@ const mostrarCarrito = () => {
                 <h3>${producto.nombre}</h3>
                 <p class="product-price">$${producto.precio}</p>
                 <div class="counter">
-				<button id="decrementar-${producto.id}" class="button">-</button>
-				<span class="product-price">${producto.cantidad}u.</span>
-				<button id="incrementar-${producto.id}" class="button">+</button>
+                    <button id="decrementar-${producto.id}" class="button">-</button>
+                    <span class="product-price">${producto.cantidad}u.</span>
+                    <button id="incrementar-${producto.id}" class="button">+</button>
 				</div>
 			</div>
 			<button id="eliminar-${producto.id}" class="remove">Eliminar</button>`;
@@ -136,6 +167,28 @@ const mostrarCarrito = () => {
             const boton = document.getElementById(`eliminar-${producto.id}`);
             boton.addEventListener("click", () => {
                 eliminarProducto(producto.id);
+                Swal.fire({
+                    title: 'Está seguro de querer eliminarlo?',
+                    //text: "El proceso sera irreversible",
+                    icon: 'CUIDADO',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, eliminar!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire(
+                            'Eliminado!',
+                            'Su producto fue eliminado del carrito.',
+                            'success'
+                        )
+                    }
+                    else {
+                        Swal.fire(
+                            'Su producto no se eliminará!'
+                        )
+                    }
+                })
             });
 
             const decrementar = document.getElementById(`decrementar-${producto.id}`);
@@ -147,6 +200,11 @@ const mostrarCarrito = () => {
             incrementar.addEventListener("click", () => {
                 incrementarProducto(producto.id);
             });
+
+            /* const totPagar = document.getElementById("pagar");
+            totPagar.addEventListener("submit", () => {
+                localStorage.setItem("comprado", JSON.stringify(carrito));
+            }); */
         });
     }
     else {
@@ -177,11 +235,14 @@ const eliminarProducto = (id) => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
     mostrarCarrito();
 };
-
+//<button type = "submit" id = "pagar" class="buttonP">PAGAR</button>
 const actualizarTotal = (contenedor) => {
-    const total = carrito.reduce((acumulador, producto) => suma(acumulador, suma(producto.precio, iva(producto.precio * producto.cantidad))) , 0);
+    const total = carrito.reduce((acumulador, producto) => suma(acumulador, suma(producto.precio, iva(producto.precio * producto.cantidad))), 0);
     contenedor.textContent = `Valor final a abonar + IVA = $${total}`;
 };
+
+
+
 
 mostrarProductos(productos);
 mostrarCarrito();
@@ -194,75 +255,22 @@ fetch("./js/productos.json")
         mostrarCarrito();
     });
 
-    const formulario = document.getElementById("formulario");
+const formulario = document.getElementById("formulario");
 
-    formulario.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const buscador = document.getElementById("buscador");
-        // Aquí van todos los filtrados que necesitemos
-        const filtro = productos.filter((producto) => producto.nombre.includes(buscador.value));
-        // Mostramos los productos que hayan pasado el filtro
-        mostrarProductos(filtro);
-    });
+formulario.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const buscador = document.getElementById("buscador");
+    const filtro = productos.filter((producto) => producto.nombre.includes(buscador.value));
+    mostrarProductos(filtro);
+});
 //veeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeerrrrrrrrrrrrrrrrrrrrrrrrrr
 
-/* let cuerpo2 = document.getElementById("cuerpo");
-let finCompra = document.createElement("div");
-finCompra.innerHTML = `<div id = "compra"></div>
-<div id = "envio"></div>`;
-cuerpo2.append(finCompra);
 
-let cuerpo3 = document.getElementById("compra");
-let formularioCompra = document.createElement("div");
-formularioCompra.className = "formularioCompra";
-formularioCompra.innerHTML = //agregar aqui el formulario que ingrese cantidad y luego el calculo 
-    `
-    <h5>Finalice su compra</h5>
-<div class = "divForm1">
-    <h5>Bebida:</h5>
-    <form action="" class="nombre" id = "formNomb">
-        <label for="text"></label>
-        <input type="text" name="nombre" id="agregar" placeholder="">
-    </form>
-</div>
-<div class = "divForm2" id = "formCant">
-    <h5>Ingrese la cantidad:</h5>
-    <form action="" class="cantidad">
-        <label for="number"></label>
-        <input type="number" name="cantidad" id="" placeholder="Ingrese la cantidad">
-    </form>
-</div>
-<div class = "divForm3" id = "formTot">
-    <h5>Total a pagar: </h5>
-    <form action="" class="cantidad">
-        <label for="number"></label>
-        <input type="number" name="cantidad" id="" placeholder="TOTAL">
-    </form>
-</div>
-<button type = "submit" id = "btn-compra">COMPRAR</button>
-`;
-cuerpo3.append(formularioCompra);
+/*const persona1 = new Persona(nombre, edad, direccion);
 
-let formularioNombre = document.getElementById("formTot");
-const pagar = () => {
-    let cantidadStock1 = resta(producto.cantidad, cantidad);
-    let precioF = resta(suma(mult(cantidad, producto.precio), iva(producto.precio)), producto.descuento);
-    let precioP = document.createElement("h4");
-    precioP.innerHTML = `El valor de cada botella es de $${producto.precio}. Su valor final de compra + impuestos es igual= $${precioF}.`;
-} */
-/* let productoAgr = document.getElementById(`boton${producto.id}`);
-let productoIng = localStorage.getItem("agregar");
- 
- 
-/* let nombre = prompt("Ingrese su nombre");
-let edad = parseInt(prompt("Ingrese su edad"));
-let direccion = prompt("Ingrese su direccion de residencia");
- 
-const persona1 = new Persona(nombre, edad, direccion);
- 
 sessionStorage.setItem("persona1", JSON.stringify(persona1)); */
 
-let cuerpo4 = document.getElementById("envio");
+/* let cuerpo4 = document.getElementById("envio");
 let formularioEnvio = document.createElement("div");
 formularioEnvio.className = "formularioEnvio";
 formularioEnvio.innerHTML = `<h3>Utilice nuestro sistema de envio personalizado</h3>
@@ -276,11 +284,11 @@ formularioEnvio.innerHTML = `<h3>Utilice nuestro sistema de envio personalizado<
     `;/* <h4>Nombre: ${persona1.nombre}</h4>
     <h4>Edad: ${persona1.edad}</h4>
     <h4>Dirección: ${persona1.direccion}</h4> */
-envio.append(formularioEnvio);
+//envio.append(formularioEnvio); 
 
 
-let footer = document.getElementById("pie-de-pagina");
-let derechos = document.createElement("div");
+const footer = document.getElementById("pie-de-pagina");
+const derechos = document.createElement("div");
 derechos.className = "derechos-autor";
 derechos.innerHTML = "<p>&copy; 2023 Company, Inc. todos los derechos reservados.</p>";
 footer.append(derechos);

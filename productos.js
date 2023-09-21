@@ -1,4 +1,4 @@
-class Producto {
+/* class Producto {
     constructor(nombre, categoria, precio, cantidad, descuento, imagen) {
         this.nombre = nombre,
             this.categoria = categoria,
@@ -24,4 +24,4 @@ const productos = [
     { id: 8, nombre: "gaseosas", categoria: "sin alcohol", precio: 600, cantidad: 50, descuento: 200, imagen: "../assets/img/gaseosas.png.png "  },
     { id: 9, nombre: "energizantes", categoria: "sin alcohol", precio: 600, cantidad: 50, descuento: 300, imagen: "../assets/img/energizantes.png.png "  },
     { id: 10, nombre: "aguas", categoria: "sin alcohol", precio: 400, cantidad: 50, descuento: 100, imagen: "../assets/img/agua.png.png "  }
-]
+] */
